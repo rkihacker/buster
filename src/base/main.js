@@ -19,6 +19,7 @@ function main() {
 
   let solverWorking = false;
   let solverButton = null;
+  let autoClicked = false;
 
   function setSolverState({working = true} = {}) {
     solverWorking = working;
@@ -91,6 +92,15 @@ function main() {
       solverButton.addEventListener('click', solveChallenge);
 
       shadow.appendChild(solverButton);
+
+      if (!autoClicked) {
+        autoClicked = true;
+        setTimeout(() => {
+          if (solverButton && !solverWorking) {
+            solverButton.click();
+          }
+        }, 100);
+      }
     }
   }
 
